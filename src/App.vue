@@ -30,7 +30,7 @@
             clipped-left
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Todo</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
@@ -43,8 +43,8 @@
                 justify="center"
         >
           <v-col>
-                <Todo />
-
+                <Todo v-on:done="getDone($event)"/>
+                <Done :doneTasks="doneTasks"/>
           </v-col>
         </v-row>
       </v-container>
@@ -58,17 +58,24 @@
 
 <script>
   import Todo from "@/components/Todo";
-
+  import Done from "@/components/Done";
   export default {
     name: 'App',
     components: {
+      Done,
       Todo
     },
-    props: {
-      source: String},
-    data: () => ({
-      drawer: null,
-    }),
+    data: () => {
+      return ({
+        doneTasks: [],
+        drawer: null,
+      });
+    },
+    methods:{
+        getDone(x){
+            this.doneTasks = x
+        }
+    },
     created () {
       this.$vuetify.theme.dark = true
     },
