@@ -84,22 +84,18 @@
       Done,
       Todo
     },
-    data: () => {
-      return ({
+    data:() =>
+      ({
         doneTasks: [],
         main: null,
         donePage: null,
         settings: null,
         drawer: null
-      });
-    },
+      }),
     methods:{
         getDone(x){
             this.doneTasks = x
         }
-    },
-    computed:{
-
     },
     created () {
       this.$vuetify.theme.dark = true
