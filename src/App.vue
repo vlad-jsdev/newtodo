@@ -52,10 +52,10 @@
           <v-col>
 
             <div v-if="main">
-                <Todo v-on:done="getDone($event)"/>
+                <Todo />
             </div>
             <div v-else-if="donePage">
-              <Done :doneTasks="doneTasks"/>
+              <Done />
             </div>
               <div v-else-if="settings">
                 <H3>Theme</H3>
@@ -63,7 +63,7 @@
 
               </div>
             <div v-else>
-              <Todo v-on:done="getDone($event)"/>
+              <Todo />
             </div>
           </v-col>
         </v-row>
@@ -86,16 +86,13 @@
     },
     data:() =>
       ({
-        doneTasks: [],
         main: null,
         donePage: null,
         settings: null,
         drawer: null
       }),
     methods:{
-        getDone(x){
-            this.doneTasks = x
-        }
+
     },
     created () {
       this.$vuetify.theme.dark = true

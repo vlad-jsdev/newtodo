@@ -60,7 +60,7 @@
                     <v-list dense>
                         <v-subheader>Todo Tasks</v-subheader>
                         <v-list-item-group color="primary">
-                    <v-list-item v-for="(todo, id) in todos" v-bind:key="id"><v-card-text>{{ todo.textTodo }}</v-card-text><v-btn v-on:click="DoneTodo(todos.indexOf(todo))">Done</v-btn></v-list-item>
+                    <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id"><v-card-text>{{ todo.textTodo }}</v-card-text><v-btn v-on:click="DoneTodo(sourceTodos.indexOf(todo))">Done</v-btn></v-list-item>
                     </v-list-item-group>
                     </v-list>
                 </v-col></v-row>
@@ -71,41 +71,34 @@
     export default {
         name: 'Todo',
         data: () => ({
-                todos: [],
                 task: '',
                 date: '',
                 time:'',
                 checkbox1: false,
                 timePicker: false,
-                doneTasks: []
+                datePick: false
         }),
         mounted(){
-            if (localStorage.getItem('todos')) {
-                try {
-                    this.todos = JSON.parse(localStorage.getItem('todos'));
-                } catch(e) {
-                    localStorage.removeItem('todos');
-                }
-            }
+            this.$store.commit('startLocal')
         },
         methods:{
             AddNewTodo() {
                 if(this.task === '')
                     return
-                this.todos.push({id: new Date(), textTodo: this.task, date: this.date, time: this.time})
-                localStorage.setItem('todos', JSON.stringify(this.todos));
+                this.$store.commit('addTodo', { task: this.task, date: this.date, time: this.time})
                 this.task = ''
                 this.date = ''
                 this.time = ''
             },
-            DoneTodo(a){
-                this.doneTasks.push(this.todos[a])
-                this.$emit('done', this.doneTasks)
-                this.todos.splice(a, 1)
-                localStorage.setItem('doneTasks', JSON.stringify(this.doneTasks));
-                localStorage.setItem('todos', JSON.stringify(this.todos));
+            DoneTodo(i){
+                this.$store.commit('doneTodo', i)
             }
         },
+        computed: {
+            sourceTodos(){
+                return this.$store.state.todos
+            }
+        }
 
     }
 </script>
