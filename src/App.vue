@@ -6,7 +6,7 @@
             clipped
     >
       <v-list dense>
-        <v-list-item @click.stop="main = true, donePage = false; settings = false">
+        <v-list-item to="/">
           <v-list-item-action >
             <v-icon>mdi-notebook-edit</v-icon>
           </v-list-item-action>
@@ -14,7 +14,7 @@
             <v-list-item-title>Todo Tasks</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click.stop="donePage = true; main = false; settings = false">
+        <v-list-item to="/done">
           <v-list-item-action >
             <v-icon>mdi-notebook-check</v-icon>
           </v-list-item-action>
@@ -22,7 +22,7 @@
             <v-list-item-title>Done Tasks</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click.stop="settings = true; donePage = false; main = false">
+        <v-list-item to="/settings">
           <v-list-item-action>
             <v-icon>mdi-cog</v-icon>
           </v-list-item-action>
@@ -45,29 +45,15 @@
       <v-container
               fluid
       >
-        <v-row
-                align="center"
-                justify="center"
-        >
+        <v-row>
           <v-col>
-
-            <div v-if="main">
-                <Todo />
-            </div>
-            <div v-else-if="donePage">
-              <Done />
-            </div>
-              <div v-else-if="settings">
-                <H3>Theme</H3>
-                <div class="d-flex justify-center align-center"><h4 class="mx-2">Light</h4><v-switch v-model="$vuetify.theme.dark" :label="Theme" ></v-switch><h4 class="mx-2">Dark</h4></div>
-
-              </div>
-            <div v-else>
-              <Todo />
-            </div>
+              <router-view />
           </v-col>
+
         </v-row>
+
       </v-container>
+
     </v-main>
     <v-footer app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -76,14 +62,8 @@
 </template>
 
 <script>
-  import Todo from "@/components/Todo";
-  import Done from "@/components/Done";
   export default {
     name: 'App',
-    components: {
-      Done,
-      Todo
-    },
     data:() =>
       ({
         main: null,
