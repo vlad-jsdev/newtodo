@@ -91,8 +91,8 @@
         settings: null,
         drawer: null
       }),
-    methods:{
-
+    mounted(){
+      this.$store.commit('startLocal')
     },
     created () {
       this.$vuetify.theme.dark = true

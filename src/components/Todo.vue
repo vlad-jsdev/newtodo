@@ -14,6 +14,7 @@
                     >
                         <template v-slot:activator="{ on, attrs }">
                             <v-text-field
+                                    class="pickers"
                                     v-model="date"
                                     label="Pick date"
                                     prepend-icon="event"
@@ -32,11 +33,11 @@
                             :return-value.sync="time"
                             transition="scale-transition"
                             offset-y
-                            max-width="290px"
                             min-width="290px"
                     >
                         <template v-slot:activator="{ on, attrs }">
                             <v-text-field
+                                    class="pickers"
                                     v-model="time"
                                     label="Pick time"
                                     prepend-icon="access_time"
@@ -78,9 +79,6 @@
                 timePicker: false,
                 datePick: false
         }),
-        mounted(){
-            this.$store.commit('startLocal')
-        },
         methods:{
             AddNewTodo() {
                 if(this.task === '')
@@ -102,3 +100,8 @@
 
     }
 </script>
+<style>
+    .pickers{
+        max-width: 200px!important;
+    }
+</style>
