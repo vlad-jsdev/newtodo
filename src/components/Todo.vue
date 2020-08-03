@@ -60,8 +60,30 @@
                 <v-col>
                     <v-list dense>
                         <v-subheader>Todo Tasks</v-subheader>
-                        <v-list-item-group color="primary">
-                    <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id"><v-card-text>{{ todo.textTodo }}</v-card-text><v-btn v-on:click="DoneTodo(sourceTodos.indexOf(todo))">Done</v-btn></v-list-item>
+                        <v-list-item-group color="primary" class="d-flex flex-column justify-space-between">
+                            <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id">
+                                <v-card-text class="d-flex flex-row justify-space-between">
+                                    <div class="task d-flex flex-row ">
+                                    <v-list-item-action>
+                                        <v-icon>mdi-card-text</v-icon>
+                                    </v-list-item-action>
+                                    <v-list-item-content>
+                                        <v-list-item-title><h3>{{ todo.textTodo }}</h3></v-list-item-title>
+                                    </v-list-item-content>
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <div v-if="todo.date !== ''">
+                                        <p><v-icon>mdi-calendar</v-icon>
+                                        {{ todo.date }}</p>
+                                    </div>
+                                        <div v-if="todo.time !== ''">
+                                        <p><v-icon>mdi-clock-time-eight</v-icon>
+                                        {{ todo.time }}</p>
+                                        </div>
+                            </div>
+                            </v-card-text>
+                        <v-btn v-on:click="DoneTodo(sourceTodos.indexOf(todo))">Done</v-btn>
+                    </v-list-item>
                     </v-list-item-group>
                     </v-list>
                 </v-col></v-row>
@@ -81,7 +103,7 @@
         }),
         methods:{
             AddNewTodo() {
-                if(this.task === '')
+                if(this.task === '' || this.task === null)
                     return
                 this.$store.commit('addTodo', { task: this.task, date: this.date, time: this.time})
                 this.task = ''
@@ -104,4 +126,8 @@
     .pickers{
         max-width: 200px!important;
     }
+    p{
+        font-size: 8pt;
+    }
+
 </style>
