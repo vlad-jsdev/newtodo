@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="d-flex flex-row">
                                         <div v-if="todo.date !== ''">
-                                        <p><v-icon>mdi-calendar</v-icon>
+                                        <p class="dateList"><v-icon>mdi-calendar</v-icon>
                                         {{ todo.date }}</p>
                                     </div>
                                         <div v-if="todo.time !== ''">
@@ -125,6 +125,9 @@
 <style>
     .pickers{
         max-width: 200px!important;
+    }
+    .dateList{
+        margin-right: 5px;
     }
     p{
         font-size: 8pt;
