@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Todo from "@/components/Todo";
 import Done from "@/components/Done";
+import Edit from "@/components/Edit";
 import Settings from "@/components/Settings";
 
 Vue.use(VueRouter)
@@ -24,6 +25,11 @@ Vue.use(VueRouter)
       path: '/settings',
       name: 'Settings',
       component: Settings
+    },
+    {
+      path: '/edit:id',
+      name: 'Edit',
+      component: Edit
     }
 ]
 

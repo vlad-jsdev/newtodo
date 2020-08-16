@@ -61,7 +61,7 @@
                     <v-list dense>
                         <v-subheader>Todo Tasks</v-subheader>
                         <v-list-item-group color="primary" class="d-flex flex-column justify-space-between">
-                            <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id">
+                            <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id" :to="{name: 'Edit', params: {id: sourceTodos.indexOf(todo)}}">
                                 <v-card-text class="d-flex flex-row justify-space-between">
                                     <div class="task d-flex flex-row ">
                                     <v-list-item-action>
