@@ -40,7 +40,7 @@ export default new Vuex.Store({
             localStorage.setItem('doneTasks', JSON.stringify(state.doneTasks))
         },
         editTodo(state, i){
-            state.todos.splice(i.i, 1, {id: new Date(), textTodo: i.task, date: i.date, time: i.time})
+            state.todos.splice(i.i, 1, {id: i.id, textTodo: i.task, date: i.date, time: i.time})
             localStorage.setItem('todos', JSON.stringify(state.todos))
         }
     },

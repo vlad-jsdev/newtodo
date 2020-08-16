@@ -61,7 +61,10 @@
                     <v-list dense>
                         <v-subheader>Todo Tasks</v-subheader>
                         <v-list-item-group color="primary" class="d-flex flex-column justify-space-between">
-                            <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id" :to="{name: 'Edit', params: {id: sourceTodos.indexOf(todo)}}">
+                            <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id">
+                                <v-btn icon color="green" v-on:click="DoneTodo(sourceTodos.indexOf(todo))">
+                                    <v-icon>mdi-check-circle</v-icon>
+                                </v-btn>
                                 <v-card-text class="d-flex flex-row justify-space-between">
                                     <div class="task d-flex flex-row ">
                                     <v-list-item-action>
@@ -82,7 +85,9 @@
                                         </div>
                             </div>
                             </v-card-text>
-                        <v-btn v-on:click="DoneTodo(sourceTodos.indexOf(todo))">Done</v-btn>
+                                <v-btn icon :to="{name: 'Edit', params: {id: sourceTodos.indexOf(todo)}}">
+                                    <v-icon>mdi-pencil</v-icon>
+                                </v-btn>
                     </v-list-item>
                     </v-list-item-group>
                     </v-list>
@@ -106,9 +111,7 @@
                 if(this.task === '' || this.task === null)
                     return
                 this.$store.commit('addTodo', { task: this.task, date: this.date, time: this.time})
-                this.task = ''
-                this.date = ''
-                this.time = ''
+                this.task = this.date = this.time = ''
             },
             DoneTodo(i){
                 this.$store.commit('doneTodo', i)
@@ -122,7 +125,7 @@
 
     }
 </script>
-<style>
+<style scoped>
     .pickers{
         max-width: 200px!important;
     }
