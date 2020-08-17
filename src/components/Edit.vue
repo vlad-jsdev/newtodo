@@ -86,8 +86,8 @@
             timePicker: false
         }),
         mounted(){
-            this.task = this.sourceTodos[this.$route.params.id].textTodo,
-            this.date = this.sourceTodos[this.$route.params.id].date,
+            this.task = this.sourceTodos[this.$route.params.id].textTodo
+            this.date = this.sourceTodos[this.$route.params.id].date
             this.time = this.sourceTodos[this.$route.params.id].time
         },
         methods:{

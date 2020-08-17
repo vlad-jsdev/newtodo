@@ -11,18 +11,18 @@ export default new Vuex.Store({
 
     getters: {
         // Here we will create a getter
-        sortByIdStore: state => {
-            function compare (a, b) {
-                if ( a.id > b.id ){
-                    return -1;
-                }
-                if ( a.id < b.id ){
-                    return 1;
-                }
-                return 0;
-            }
-            return state.todos.sort(compare)
-        }
+        // sortByIdStore: state => {
+        //     function compare (a, b) {
+        //         if ( a.id > b.id ){
+        //             return -1;
+        //         }
+        //         if ( a.id < b.id ){
+        //             return 1;
+        //         }
+        //         return 0;
+        //     }
+        //     return state.todos.sort(compare)
+        // }
     },
 
     mutations: {
@@ -38,7 +38,7 @@ export default new Vuex.Store({
             }
         },
         addTodo(state, item){
-            state.todos.push({id: new Date(), textTodo: item.task, date: item.date, time: item.time}) //push todos to storage
+            state.todos.unshift({id: new Date(), textTodo: item.task, date: item.date, time: item.time}) //push todos to storage
             localStorage.setItem('todos', JSON.stringify(state.todos)) // Write to localStorage todos
         },
         doneTodo(state, i){
@@ -53,6 +53,10 @@ export default new Vuex.Store({
         },
         editTodo(state, i){
             state.todos.splice(i.i, 1, {id: i.id, textTodo: i.task, date: i.date, time: i.time})
+            localStorage.setItem('todos', JSON.stringify(state.todos))
+        },
+        saveTodo(state, i){
+            state.todos = i
             localStorage.setItem('todos', JSON.stringify(state.todos))
         }
     },

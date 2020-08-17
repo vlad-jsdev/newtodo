@@ -65,8 +65,11 @@
                 <v-col>
                     <v-list dense>
                         <v-subheader>Todo Tasks</v-subheader>
-                        <v-list-item-group color="primary" class="d-flex flex-column justify-space-between">
-                            <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id">
+                      <v-list-item-group color="primary" class="d-flex flex-column justify-space-between">
+                        <draggable  v-model="sourceTodos"
+                                    :options="{delay:200, animation:300}"
+                        >
+                        <v-list-item v-for="(todo, id) in sourceTodos" v-bind:key="id">
                                 <v-btn icon color="green" v-on:click="DoneTodo(sourceTodos.indexOf(todo))">
                                     <v-icon>mdi-check-circle</v-icon>
                                 </v-btn>
@@ -94,15 +97,21 @@
                                     <v-icon>mdi-pencil</v-icon>
                                 </v-btn>
                     </v-list-item>
-                    </v-list-item-group>
+                        </draggable>
+                      </v-list-item-group>
                     </v-list>
                 </v-col></v-row>
         </v-container>
     </div>
 </template>
 <script>
-    export default {
+import draggable from 'vuedraggable'
+
+export default {
         name: 'Todo',
+  components: {
+    draggable,
+  },
         data: () => ({
                 task: '',
                 date: '',
@@ -123,8 +132,13 @@
             }
         },
         computed: {
-            sourceTodos(){
-                return this.$store.getters.sortByIdStore
+            sourceTodos: {
+              get(){
+                return this.$store.state.todos
+              },
+              set(value){
+                this.$store.commit('saveTodo', value)
+              }
             }
         }
 
