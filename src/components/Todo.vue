@@ -49,11 +49,16 @@
                         <v-time-picker
                                 v-if="timePicker"
                                 v-model="time"
+                                format="24hr"
                                 full-width
                                 @click:minute="$refs.menu.save(time)"
                         ></v-time-picker>
                     </v-menu>
                     <v-btn large v-on:click="AddNewTodo(task)">Add</v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
                 </v-col>
             </v-row>
             <v-row>
@@ -119,7 +124,7 @@
         },
         computed: {
             sourceTodos(){
-                return this.$store.state.todos
+                return this.$store.getters.sortByIdStore
             }
         }
 
