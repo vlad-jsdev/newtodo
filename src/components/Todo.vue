@@ -75,7 +75,7 @@
                                 </v-btn>
                                 <v-card-text class="d-flex flex-row justify-space-between">
                                     <div class="task d-flex flex-row ">
-                                    <v-list-item-action>
+                                    <v-list-item-action class="handle">
                                         <v-icon>mdi-card-text</v-icon>
                                     </v-list-item-action>
                                     <v-list-item-content>
@@ -155,4 +155,13 @@ export default {
         font-size: 8pt;
     }
 
+
+    .sortable-chosen {
+      opacity: 0.7;
+      background-color:#dcdcdc;
+    }
+
+    .handle {
+      cursor: move;
+    }
 </style>
