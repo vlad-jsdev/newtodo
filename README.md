@@ -17,13 +17,13 @@ To use this Todo app locally, follow the steps below:
 1. Clone this repository to your local machine using the following command:
 
    ```
-   git clone https://github.com/your-username/todo-app-vuejs.git
+   git clone https://github.com/vlad-jsdev/newtodo.git
    ```
 
 2. Navigate to the project directory:
 
    ```
-   cd todo-app-vuejs
+   cd newtodo
    ```
 
 3. Install the dependencies using npm or yarn:
